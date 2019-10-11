@@ -56,6 +56,7 @@
     "nextcloud-vue": "^0.12.7",
     "nextcloud-vue-collections": "^0.6.0",
     "p-queue": "^6.1.0",
+    "p-limit": "^2.2.1",
     "query-string": "^5.1.1",
     "select2": "3.5.1",
     "snap.js": "^2.0.9",
