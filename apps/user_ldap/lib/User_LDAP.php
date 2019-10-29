@@ -411,15 +411,13 @@ class User_LDAP extends BackendUtility implements \OCP\IUserBackend, \OCP\UserIn
 
 		// early return path if it is a deleted user
 		$user = $this->access->userManager->get($uid);
-		if($user instanceof OfflineUser) {
-			return $user->getHomePath() ?: false;
-		} else if ($user === null) {
+		if($user instanceof User || $user instanceof OfflineUser) {
+			$path = $user->getHomePath() ?: false;
+		} else {
 			throw new NoUserException($uid . ' is not a valid user anymore');
 		}
 
-		$path = $user->getHomePath();
 		$this->access->cacheUserHome($uid, $path);
-
 		return $path;
 	}
 
