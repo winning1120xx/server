@@ -947,15 +947,13 @@ span.version {
 	.app-list-move {
 		transition: transform 1s;
 	}
-
-	.counter{
+	#app-list-update-all {
+		margin-left: 10px;
+	}
+	.counter {
 		padding-left: $header-height - 10px;
 		margin: 10px;
 	}
-	.btn-primary{
-		padding-left: 14px;
-	}
-
 	&.installed {
 		.apps-list-container {
 			display: table;
@@ -979,6 +977,7 @@ span.version {
 			&.selected {
 				background-color: var(--color-background-dark);
 			}
+
 		}
 		.groups-enable {
 			margin-top: 0;

@@ -26,9 +26,10 @@
 			<template v-if="useListView">
 				<div v-if="showUpdateAll" class="counter">
 					{{ counter }} {{ t('settings', 'apps have an update available') }}
-				</div>
-				<div class ="btn-primary">
-					<button v-if="showUpdateAll" class="primary" @click="updateAll">{{t('settings', 'Update all')}}</button>
+					<button v-if="showUpdateAll"
+						id="app-list-update-all"
+						class="primary"
+						@click="updateAll">{{t('settings', 'Update all')}}</button>
 				</div>
 				<transition-group name="app-list" tag="div" class="apps-list-container">
 					<AppItem v-for="app in apps"
