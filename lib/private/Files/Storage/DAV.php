@@ -842,6 +842,9 @@ class DAV extends Common {
 			} else if ($e->getHttpStatus() === Http::STATUS_METHOD_NOT_ALLOWED) {
 				// ignore exception for MethodNotAllowed, false will be returned
 				return;
+			} else if ($e->getHttpStatus() === Http::STATUS_FORBIDDEN){
+				// The operation is forbidden. Fail somewhat gracefully
+				return;
 			}
 			throw new StorageNotAvailableException(get_class($e) . ': ' . $e->getMessage());
 		} else if ($e instanceof ClientException) {
