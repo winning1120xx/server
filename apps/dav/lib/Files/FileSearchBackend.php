@@ -119,6 +119,7 @@ class FileSearchBackend implements ISearchBackend {
 			new SearchPropertyDefinition(FilesPlugin::SIZE_PROPERTYNAME, true, true, true, SearchPropertyDefinition::DATATYPE_NONNEGATIVE_INTEGER),
 			new SearchPropertyDefinition(TagsPlugin::FAVORITE_PROPERTYNAME, true, true, true, SearchPropertyDefinition::DATATYPE_BOOLEAN),
 			new SearchPropertyDefinition(FilesPlugin::INTERNAL_FILEID_PROPERTYNAME, true, true, false, SearchPropertyDefinition::DATATYPE_NONNEGATIVE_INTEGER),
+			new SearchPropertyDefinition(FilesPlugin::OWNER_ID_PROPERTYNAME, true, true, false),
 
 			// select only properties
 			new SearchPropertyDefinition('{DAV:}resourcetype', false, true, false),
@@ -126,7 +127,6 @@ class FileSearchBackend implements ISearchBackend {
 			new SearchPropertyDefinition(FilesPlugin::CHECKSUMS_PROPERTYNAME, false, true, false),
 			new SearchPropertyDefinition(FilesPlugin::PERMISSIONS_PROPERTYNAME, false, true, false),
 			new SearchPropertyDefinition(FilesPlugin::GETETAG_PROPERTYNAME, false, true, false),
-			new SearchPropertyDefinition(FilesPlugin::OWNER_ID_PROPERTYNAME, false, true, false),
 			new SearchPropertyDefinition(FilesPlugin::OWNER_DISPLAY_NAME_PROPERTYNAME, false, true, false),
 			new SearchPropertyDefinition(FilesPlugin::DATA_FINGERPRINT_PROPERTYNAME, false, true, false),
 			new SearchPropertyDefinition(FilesPlugin::HAS_PREVIEW_PROPERTYNAME, false, true, false, SearchPropertyDefinition::DATATYPE_BOOLEAN),
@@ -337,6 +337,8 @@ class FileSearchBackend implements ISearchBackend {
 				return 'tagname';
 			case FilesPlugin::INTERNAL_FILEID_PROPERTYNAME:
 				return 'fileid';
+			case FilesPlugin::OWNER_ID_PROPERTYNAME:
+				return 'owner';
 			default:
 				throw new \InvalidArgumentException('Unsupported property for search or order: ' . $property->name);
 		}
