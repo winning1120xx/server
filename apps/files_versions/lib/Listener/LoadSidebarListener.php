@@ -1,7 +1,10 @@
+<?php
+declare(strict_types=1);
 /**
- * @copyright 2017, Roeland Jago Douma <roeland@famdouma.nl>
+ * @copyright Copyright (c) 2019, Roeland Jago Douma <roeland@famdouma.nl>
  *
  * @author Roeland Jago Douma <roeland@famdouma.nl>
+ * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @license GNU AGPL version 3 or any later version
  *
@@ -20,35 +23,23 @@
  *
  */
 
-(function() {
-	if (!OC.Share) {
-		OC.Share = {}
+namespace OCA\Files_Versions\Listener;
+
+use OCA\Files_Versions\AppInfo\Application;
+use OCA\Files\Event\LoadSidebar;
+use OCP\EventDispatcher\Event;
+use OCP\EventDispatcher\IEventListener;
+use OCP\Util;
+
+class LoadSidebarListener implements IEventListener {
+	public function handle(Event $event): void {
+		if (!($event instanceof LoadSidebar)) {
+			return;
+		}
+
+		// TODO: make sure to only include the sidebar script when 
+		// we properly split it between files list and sidebar
+		Util::addScript(Application::APP_ID, 'files_versions');
 	}
 
-	OC.Share.Social = {}
-
-	var SocialModel = OC.Backbone.Model.extend({
-		defaults: {
-			/** used for sorting social buttons */
-			key: null,
-			/** url to open, {{reference}} will be replaced with the link */
-			url: null,
-			/** Name to show in the tooltip */
-			name: null,
-			/** Icon class to display */
-			iconClass: null,
-			/** Open in new windows */
-			newWindow: true
-		}
-	})
-
-	OC.Share.Social.Model = SocialModel
-
-	var SocialCollection = OC.Backbone.Collection.extend({
-		model: OC.Share.Social.Model,
-
-		comparator: 'key'
-	})
-
-	OC.Share.Social.Collection = new SocialCollection()
-})()
+}
